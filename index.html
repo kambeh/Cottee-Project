@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    
+  <title>Page Title</title>
+
+<!-- CSS used in this page -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/starter-template-grid-layout.css">
+<link rel="stylesheet" href="css/jquery.circliful.css" />
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<!-- include javascript library in this page -->
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery.circliful.min.js"></script>
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">
+			<img src="images/Cottees-logo.png" width="" height="106" alt="Cottee Logo">
+		  </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <h1>Cottee's Dashboard</h1>
+			<div class='bar'></div>
+			<!-- i class="fa fa-play-circle fa-lg"></i -->
+            <li><i class="fa fa-undo"><span>Last updated: 07 December 2015 </span></i></li>
+            <li><i class="fa fa-calendar"><span>Viewing data for: January - June</span></i></li>
+          </ul> 
+        </div><!--/.nav-collapse -->
+		  <a class="navbar-img" href="#">
+			<img src="images/product-1.png" width="" height="90" alt="Cottee Product">
+		  </a>
+      </div>
+    </nav>
+	  
+    <div class="container">
+      <h3>Cottee's</h3>
+	  <div class='bar'></div>
+      <p>Sample Description about this brand here</p>
+      <div class="row">
+        <div class="col-md-2"><span>Valid respondents:</span><p>90</p></div>
+        <div class="col-md-2"><span>Eliminated:</span><p>6</p></div>
+        <div class="col-md-2"><span>Flatliners:</span><p>2</p></div>
+        <div class="col-md-2"><span>Inconsistensy:</span><p>4</p></div>
+		<div class="col-md-2"><span>Completes:</span><p class="special">96</p></div>
+        <div class="col-md-2"></div>
+      </div>
+	  <div class='pg-guide-line'></div>
+
+      <h3>Key Effective Ad measures</h3>
+	  <div class='bar'></div>	  
+      <div class="row margin0">
+		<div class="chart-circular" id="myStathalf1" data-html="true" data-dimension="250" data-text="3.5" data-info="Attention" data-width="30" data-fontsize="38" data-percent="35" data-fgcolor="#fa0" data-bgcolor="#eee" data-type="half" data-icon="fa-task"></div>	  
+		<div class="chart-circular" id="myStathalf2" data-dimension="250" data-text="6.0" data-info="Brand Bonding" data-width="30" data-fontsize="38" data-percent="60" data-fgcolor="#03a" data-bgcolor="#eee" data-type="half" data-icon="fa-task"></div>
+		<div class="chart-text"><span>Will your ad get noticed?</span><span>How does the ad make viewers<br> feel about the brand?</span></div>
+      </div>
+
+	  <div class='pg-guide-line'></div>
+
+      <h3>Add + Impact Ranking</h3>
+	  <div class='bar'></div>	  
+      <p>When comparing this ad to the add+impact@global database a tick indicates that this ad is in the top quartile of ads for that category.</p>
+      <div class="row">
+        <div class="col-md-12" id="chart-div"></div>
+      </div>
+      <hr>
+    </div><!-- /.container -->
+
+<!-- include bootstrap javascript library -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!-- script src="js/ie10-viewport-bug-workaround.js"></script -->
+
+<!--Load the AJAX API for google charts -->
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    
+<script type="text/javascript">
+	$( document ).ready(function() {
+		// plot semi-circular graph
+        $('#myStathalf1').circliful();
+		$('#myStathalf2').circliful();
+    });
+	
+      // Load the Visualization API and the piechart package.
+      google.load('visualization', '1.0', {'packages':['corechart', 'bar']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart);
+	  
+      function drawChart() {
+        // Create the data table.	  
+		   var data = google.visualization.arrayToDataTable([
+			 ['Element', '', { role: 'style' }, { role: 'annotation' } ],
+			 ['Product Service', 0.38, '#03a', 'Cordial (37 ads)'],
+			 ['Brand', 0.72, '#f00', 'Cottees (15 ads)'],
+			 ['Country', 0.55, '#03a', 'Australia (1473 ads)'],
+			 ['Category', 0.55, '#03a', 'Cold drinks (324 ads)' ],
+		  ]);
+		  
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" }],2);
+		  
+			// Set chart options
+			var options = {
+						   'width':950,
+						   'height':300,
+							hAxis: {
+							  title: '',
+							  minValue: 0,
+							  maxValue: 1,
+							  format: 'percent',
+							  ticks: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+							},
+							vAxis: {
+							  title: ''
+							},
+							legend: {
+							  position: "none"
+							},
+							chartArea:{ 
+								top:0,
+							}
+						  };
+
+			// format chart's label to percentage
+			var formatter = new google.visualization.NumberFormat({pattern:'#,###%'});
+			formatter.format(data, 1);
+
+			// Instantiate and draw our chart, passing in some options.
+			var chart = new google.visualization.BarChart(document.getElementById('chart-div'));
+			chart.draw(data, options);		  
+	  }
+</script>
+
+</body>
+</html>
